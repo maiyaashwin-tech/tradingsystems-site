@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Nifty 200 Opening Movers | tradingsystems.co.in</title>
+<meta name="description" content="The five Nifty 200 stocks up the most and down the most at 9:20 am IST each trading day, five minutes after the NSE open.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a trading slip. Clock strip on top, gainers and losers as two ranked ledgers side by side (stacked on a phone) with move-size bars, earlier sessions as a compact log below. */
+:root{
+  --bg:#eef0f4; --surface:#fbfcfd; --ink:#161b2e; --muted:#5d657c; --line:#d5d9e3;
+  --accent:#2b3a8c; --loss:#b3261e; --loss-soft:#f3d9d6; --gain:#12713d; --gain-soft:#d3ebdc;
+  --warn-bg:#fff1cc; --warn-ink:#6b4a00;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#10131d; --surface:#181c2a; --ink:#e8ebf5; --muted:#98a1b8; --line:#2b3145;
+    --accent:#9dabff; --loss:#ff7a6e; --loss-soft:#4a2320; --gain:#5fd08f; --gain-soft:#173a26;
+    --warn-bg:#3d3110; --warn-ink:#ffd978;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#10131d; --surface:#181c2a; --ink:#e8ebf5; --muted:#98a1b8; --line:#2b3145;
+  --accent:#9dabff; --loss:#ff7a6e; --loss-soft:#4a2320; --gain:#5fd08f; --gain-soft:#173a26;
+  --warn-bg:#3d3110; --warn-ink:#ffd978;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;padding-inline:16px;padding-block:28px 48px}
+.wrap{max-width:920px;margin-inline:auto;display:flex;flex-direction:column;gap:28px}
+header{display:flex;flex-direction:column;gap:14px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,6vw,40px);line-height:1.05;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.lede{color:var(--muted);margin:0;max-width:60ch}
+.clock{display:flex;flex-wrap:wrap;gap:8px 28px;border-block:1px solid var(--line);padding-block:10px;font-family:var(--mono);font-size:13px}
+.clock div{display:flex;gap:8px;align-items:baseline;min-width:0}
+.k{color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-size:11px;font-family:var(--body);font-weight:500}
+.v{font-variant-numeric:tabular-nums;font-weight:500}
+h2{font-family:var(--display);font-weight:500;font-size:20px;margin:0;letter-spacing:-.01em}
+h3{font-family:var(--body);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin:0;color:var(--muted)}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px}
+.stamp{font-family:var(--mono);font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.chip{display:inline-block;background:var(--warn-bg);color:var(--warn-ink);font-size:12.5px;font-weight:500;padding:5px 10px;border-radius:3px}
+section{display:flex;flex-direction:column;gap:12px}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px}
+.side{display:flex;flex-direction:column;gap:8px;min-width:0}
+.ledger{background:var(--surface);border:1px solid var(--line);border-radius:4px;margin:0;padding:0;list-style:none}
+.row{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:4px 12px;padding:14px 16px;align-items:baseline}
+.row + .row{border-top:1px solid var(--line)}
+.rank{font-family:var(--mono);color:var(--muted);font-size:13px}
+.sym{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.01em;overflow-wrap:anywhere}
+.pct{font-family:var(--mono);font-weight:600;font-size:19px;font-variant-numeric:tabular-nums;text-align:right}
+.sub{grid-column:2 / 4;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 16px;font-family:var(--mono);font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{grid-column:2 / 4;height:6px;border-radius:1px;margin-top:6px}
+.bar i{display:block;height:100%;border-radius:1px}
+.down .pct{color:var(--loss)} .down .bar{background:var(--loss-soft)} .down .bar i{background:var(--loss)}
+.up .pct{color:var(--gain)} .up .bar{background:var(--gain-soft)} .up .bar i{background:var(--gain)}
+.none{background:var(--surface);border:1px dashed var(--line);border-radius:4px;padding:16px;color:var(--muted);font-size:13.5px}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:4px;padding:22px 16px;color:var(--muted)}
+.empty strong{color:var(--ink);display:block;font-weight:600;margin-bottom:4px}
+.logwrap{overflow-x:auto;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:9px 12px;vertical-align:top}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:500;border-bottom:1px solid var(--line)}
+tr + tr td{border-top:1px solid var(--line)}
+td.d{font-family:var(--mono);white-space:nowrap;font-variant-numeric:tabular-nums}
+td.l{font-family:var(--mono);font-variant-numeric:tabular-nums;min-width:230px;color:var(--muted)}
+td.l b{font-weight:600;color:var(--ink)}
+td.l .dn{color:var(--loss)} td.l .gn{color:var(--gain)}
+td.l div{white-space:nowrap}
+.note{color:var(--muted);font-size:13px;margin:0;max-width:65ch}
+.note a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<style>html{color-scheme:light}body{margin:0}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Nifty 200 Opening Movers</h1>
+    <p class="lede">The five Nifty 200 stocks up the most and the five down the most against their previous close, read from NSE five minutes after the 9:15 open.</p>
+    <div class="clock" aria-live="off">
+      <div><span class="k">IST now</span><span class="v" id="now">--:--:--</span></div>
+      <div><span class="k">Next reading</span><span class="v" id="next">--</span></div>
+      <div><span class="k">In</span><span class="v" id="left">--</span></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="head">
+      <h2 id="mainTitle">Latest reading</h2>
+      <span class="stamp" id="mainStamp"></span>
+    </div>
+    <div id="chipSlot" hidden><span class="chip" id="chip"></span></div>
+    <div class="pair" id="pair" hidden>
+      <div class="side">
+        <h3>Top 5 gainers</h3>
+        <ol class="ledger up" id="gainers"></ol>
+        <div class="none" id="gainersNone" hidden>Gainers were not recorded for this session.</div>
+      </div>
+      <div class="side">
+        <h3>Top 5 losers</h3>
+        <ol class="ledger down" id="losers"></ol>
+        <div class="none" id="losersNone" hidden>Losers were not recorded for this session.</div>
+      </div>
+    </div>
+    <div class="empty" id="empty"><strong id="emptyTitle">Loading the latest reading…</strong><span id="emptyBody">Each trading day's five gainers and five losers appear here shortly after 9:20 am IST.</span></div>
+  </section>
+
+  <section id="logSection" hidden>
+    <h2>Earlier sessions</h2>
+    <div class="logwrap">
+      <table>
+        <thead><tr><th>Date</th><th>Five biggest gainers</th><th>Five biggest losers</th></tr></thead>
+        <tbody id="log"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <p class="note">Source: National Stock Exchange of India, Nifty 200 heat map feed on <a href="https://www.nseindia.com/market-data/live-market-indices/heatmap" target="_blank" rel="noopener">nseindia.com</a>. Percentages are change from the previous close. The time printed beside each reading is NSE's own “as on” time for those prices, so you can see exactly how close to 9:20:00 it was taken. This site is independent and is not affiliated with or endorsed by NSE. Not investment advice.</p>
+</div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+  // IST is UTC+5:30 with no daylight saving, so shift the clock and read UTC fields.
+  function ist(d){return new Date((d||new Date()).getTime()+330*60000)}
+  function p2(n){return (n<10?"0":"")+n}
+  function tick(){
+    var n=ist();
+    $("now").textContent=p2(n.getUTCHours())+":"+p2(n.getUTCMinutes())+":"+p2(n.getUTCSeconds());
+    var t=new Date(Date.UTC(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate(),9,20,0));
+    if(n>=t) t.setUTCDate(t.getUTCDate()+1);
+    while(t.getUTCDay()===0||t.getUTCDay()===6) t.setUTCDate(t.getUTCDate()+1);
+    $("next").textContent=DOW[t.getUTCDay()]+" "+t.getUTCDate()+" "+MON[t.getUTCMonth()]+", 09:20";
+    var s=Math.floor((t-n)/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60);
+    $("left").textContent=(h?h+"h ":"")+p2(m)+"m "+p2(s%60)+"s";
+  }
+  tick(); setInterval(tick,1000);
+
+  function prettyDate(iso){
+    var a=String(iso||"").split("-"); if(a.length!==3) return String(iso||"");
+    var d=new Date(Date.UTC(+a[0],+a[1]-1,+a[2]));
+    return DOW[d.getUTCDay()]+" "+(+a[2])+" "+MON[+a[1]-1]+" "+a[0];
+  }
+  function num(v,dp){var n=Number(v);return isFinite(n)?n.toLocaleString("en-IN",{minimumFractionDigits:dp,maximumFractionDigits:dp}):"–"}
+  function pct(v){var n=Number(v);return isFinite(n)?(n>0?"+":"")+n.toFixed(2)+"%":"–"}
+  function money(v){var n=Number(v);return isFinite(n)?(n<0?"−":n>0?"+":"")+"₹"+num(Math.abs(n),2):"–"}
+  function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
+  function five(a){return Array.isArray(a)?a.slice(0,5):[]}
+
+  function showEmpty(title,body){
+    $("pair").hidden=true; $("chipSlot").hidden=true; $("mainStamp").textContent="";
+    $("empty").hidden=false; $("emptyTitle").textContent=title; $("emptyBody").textContent=body;
+  }
+
+  function fillLedger(id,rows){
+    var ol=$(id); ol.textContent="";
+    ol.hidden=!rows.length; $(id+"None").hidden=!!rows.length;
+    var max=Math.max.apply(null,rows.map(function(r){return Math.abs(Number(r.pChange))||0}).concat([0]))||1;
+    rows.forEach(function(r,i){
+      var li=el("li","row");
+      li.appendChild(el("span","rank",String(i+1)));
+      li.appendChild(el("span","sym",String(r.symbol||"")));
+      li.appendChild(el("span","pct",pct(r.pChange)));
+      var sub=el("div","sub");
+      sub.appendChild(el("span",null,"LTP ₹"+num(r.lastPrice,2)));
+      sub.appendChild(el("span",null,"Change "+money(r.change)));
+      li.appendChild(sub);
+      var bar=el("div","bar"),fill=el("i");
+      fill.style.width=Math.max(4,Math.round(Math.abs(Number(r.pChange)||0)/max*100))+"%";
+      bar.appendChild(fill); li.appendChild(bar);
+      ol.appendChild(li);
+    });
+  }
+
+  function renderMain(doc){
+    $("mainTitle").textContent=prettyDate(doc.date);
+    $("mainStamp").textContent=doc.nseTime?"NSE as on "+doc.nseTime+" IST":"";
+    var chip=doc.kind==="close"?"Closing figures from a test capture, not a 9:20 reading":
+             doc.kind==="late"?"Taken later than 9:20. Check the NSE time shown":"";
+    $("chipSlot").hidden=!chip; $("chip").textContent=chip;
+    var g=five(doc.gainers), l=five(doc.losers);
+    if(doc.kind==="holiday"||(!g.length&&!l.length)){
+      showEmpty(doc.kind==="holiday"?"No trading on "+prettyDate(doc.date):"No reading stored for "+prettyDate(doc.date),
+                doc.note?String(doc.note):"NSE had not published fresh Nifty 200 prices at 9:20 am IST.");
+      return;
+    }
+    fillLedger("gainers",g); fillLedger("losers",l);
+    $("pair").hidden=false; $("empty").hidden=true;
+  }
+
+  function logCell(doc,rows,cls){
+    var td=el("td","l");
+    if(doc.kind==="holiday"){td.textContent="No trading";return td;}
+    if(!rows.length){td.textContent="Not recorded";return td;}
+    rows.forEach(function(r){
+      var line=el("div");
+      line.appendChild(el("b",null,String(r.symbol||"")));
+      line.appendChild(document.createTextNode(" "));
+      line.appendChild(el("span",cls,pct(r.pChange)));
+      td.appendChild(line);
+    });
+    return td;
+  }
+
+  function renderLog(docs){
+    var tb=$("log"); tb.textContent="";
+    docs.forEach(function(doc){
+      var tr=el("tr");
+      tr.appendChild(el("td","d",prettyDate(doc.date)+(doc.kind==="close"?" (close)":"")));
+      tr.appendChild(logCell(doc,five(doc.gainers),"gn"));
+      tr.appendChild(logCell(doc,five(doc.losers),"dn"));
+      tb.appendChild(tr);
+    });
+    $("logSection").hidden=!docs.length;
+  }
+
+  function render(snap){
+    var docs=snap.docs.map(function(d){return d.data()||{}}).filter(function(d){return d.date})
+      .sort(function(a,b){return a.date<b.date?1:-1});
+    if(!docs.length){
+      showEmpty("No readings yet","The first one lands shortly after 9:20 am IST on the next trading day.");
+      $("mainTitle").textContent="Latest reading"; renderLog([]); return;
+    }
+    renderMain(docs[0]); renderLog(docs.slice(1));
+  }
+
+  function load(){
+    fetch("data.json?t="+Date.now(),{cache:"no-store"}).then(function(r){
+      if(!r.ok) throw new Error("http "+r.status); return r.json();
+    }).then(function(j){
+      var list=Array.isArray(j&&j.snapshots)?j.snapshots:[];
+      render({docs:list.map(function(d){return {data:function(){return d}}})});
+    }).catch(function(){
+      showEmpty("Readings can't be loaded right now","Reload the page to try again.");
+    });
+  }
+  load(); setInterval(load,60000);
+})();
+</script>
+</body>
+</html>
