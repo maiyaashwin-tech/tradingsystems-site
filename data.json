@@ -1,73 +1,11 @@
 {
  "snapshots": [
   {
-   "date": "2026-10-09",
-   "kind": "close",
-   "nseTime": "09-Oct-2026 16:00:27",
-   "gainers": [
-    {
-     "symbol": "PERSISTENT",
-     "pChange": 5.52,
-     "lastPrice": 5770,
-     "change": 302
-    },
-    {
-     "symbol": "GMRAIRPORT",
-     "pChange": 5.17,
-     "lastPrice": 92.31,
-     "change": 4.54
-    },
-    {
-     "symbol": "COLPAL",
-     "pChange": 4.73,
-     "lastPrice": 1817.8,
-     "change": 82.1
-    },
-    {
-     "symbol": "APOLLOHOSP",
-     "pChange": 4.72,
-     "lastPrice": 8027.5,
-     "change": 361.5
-    },
-    {
-     "symbol": "GLENMARK",
-     "pChange": 4.6,
-     "lastPrice": 2293,
-     "change": 100.8
-    }
-   ],
-   "losers": [
-    {
-     "symbol": "ENRIN",
-     "pChange": -2.48,
-     "lastPrice": 3101,
-     "change": -79
-    },
-    {
-     "symbol": "DMART",
-     "pChange": -1.9,
-     "lastPrice": 3516.8,
-     "change": -68.2
-    },
-    {
-     "symbol": "BSE",
-     "pChange": -1.43,
-     "lastPrice": 3287.2,
-     "change": -47.6
-    },
-    {
-     "symbol": "TIINDIA",
-     "pChange": -1.25,
-     "lastPrice": 2213,
-     "change": -28
-    },
-    {
-     "symbol": "SIEMENS",
-     "pChange": -1.21,
-     "lastPrice": 3595,
-     "change": -44
-    }
-   ]
+   "date": "2026-10-12",
+   "kind": "nodata",
+   "gainers": [],
+   "losers": [],
+   "note": "The market was open, but NSE's feed sent an out-of-date copy at 9:20, so no reading was recorded."
   }
  ]
 }
